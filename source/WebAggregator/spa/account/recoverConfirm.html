@@ -1,0 +1,14 @@
+﻿<div class="row">
+    <form class="form-signin" role="form" novalidate angular-validator name="userRegistrationForm" angular-validator-submit="confirm()">
+        <h3 class="form-signin-heading">Изменение пароля</h3>
+        <div class="form-group">
+            <input type="text" name="inputCode" class="form-control" ng-model="confirmData.code" placeholder="Код подтверждения"
+                   validate-on="blur" required required-message="'Заполните поле код подтверждения'">
+        </div>
+        <div class="form-group">
+            <input type="password" name="inputPassword" class="form-control" ng-model="confirmData.password" placeholder="Пароль"
+                   validate-on="blur" required required-message="'Заполните поле пароль'">
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Подтвердить</button>
+    </form>
+</div>

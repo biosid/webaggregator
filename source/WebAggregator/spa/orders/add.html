@@ -1,0 +1,130 @@
+﻿<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">Новый заказ</div>
+
+            <form class="" role="form" novalidate angular-validator name="orderAddForm" angular-validator-submit="createOrder()">
+                <div class="panel-body">
+
+                    <div class="form-group">
+                        <label for="inputOrderPhone" class="sr-only">Номер телефона</label>
+                        <input ng-blur="passangerNumberChange()" ui-mask="+7(999) 999-9999" ui-mask-placeholder ui-mask-placeholder-char="_" type="text" id="inputOrderPhone" name="inputOrderPhone" class="form-control" ng-model="order.phone" placeholder="Номер телефона"
+                               validate-on="blur" required required-message="'Не заполнено поле Номер телефона'">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputOrderName" class="sr-only">Пассажир</label>
+                        <input type="text" id="inputOrderName" name="inputOrderName" class="form-control" ng-model="order.passengerName" placeholder="Пассажир"
+                               validate-on="blur">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputOrderStartAdress" class="sr-only">Откуда</label>
+                        <input type="text" id="inputOrderStartAdress" force-selection="true" g-places-autocomplete name="inputOrderStartAdress" class="form-control" ng-model="order.startAdress" placeholder="Введите адрес"
+                               validate-on="blur" required required-message="'Не заполенен адрес отправления'">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputOrderFinishAdress" class="sr-only">Куда</label>
+                        <input type="text" id="inputOrderFinishAdress" force-selection="true" g-places-autocomplete name="inputOrderFinishAdress" class="form-control" ng-model="order.finishAdress" placeholder="Введите адрес"
+                               validate-on="blur" required required-message="'Не заполнен адрес назначения'">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputOrderDate" class="sr-only">Дата</label>
+                        <input kendo-date-picker
+                               placeholder="Дата"
+                               id="inputOrderDate"
+                               name="inputOrderDate"
+                               ng-model="order.date"
+                               k-parse-formats="['yyyy-MM-ddTHH:mm:sszzz']"
+                               k-format="'dd.MM.yyyy'"
+                               style="width: 100%;"
+                               k-options="dateTimeOptions"
+                               required
+                               required-message="'Не заполнена дата заказа'" />
+
+                        <!--  <input type="date" id="inputOrderDate" name="inputOrderDate" class="form-control" ng-model="order.date" placeholder="Дата"
+                                 validate-on="blur" required required-message="'Не заполнена дата заказа'">-->
+                    </div>
+                    <div class="form-group">
+                        <label for="inputOrderTime" class="sr-only">Время</label>
+
+                        <input kendo-time-picker
+                               placeholder="Время"
+                               id="inputOrderTime"
+                               name="inputOrderTime"
+                               ng-model="order.time"
+                               k-options="dateTimeOptions"
+                               style="width: 100%;"
+                               validate-on="blur" />
+
+                        <!-- <input type="time" id="inputOrderTime" name="inputOrderTime" class="form-control" ng-model="order.time" placeholder="Время"
+                                validate-on="blur" required required-message="'Не заполенено время заказа'">-->
+                    </div>
+                    <div class="form-group">
+                        <label for="inputOrderComment" class="sr-only">Комментарий к заказу</label>
+                        <textarea type="text" id="inputOrderComment" name="inputOrderComment" class="form-control" ng-model="order.comment" placeholder="Комментарий к заказу"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputOrderWishes" class="sr-only">Пожелания</label>
+                        <textarea type="text" id="inputOrderWishes" name="inputOrderWishes" class="form-control" ng-model="order.wishes" placeholder="Пожелания"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputOrderNotes" class="sr-only">Примечание по пассажиру</label>
+                        <textarea type="text" id="inputOrderNotes" name="inputOrderNotes" class="form-control" ng-model="order.notes" placeholder="Примечание по пассажиру"></textarea>
+                    </div>
+
+                </div>
+                <div class="panel-footer">
+                    <div class="btn-group">
+                        <button type="button" ng-disabled="orderAddForm.$invalid" ng-click="calculate()" class="btn btn-info">Рассчитать</button>
+                    </div>
+                    <!---->
+                </div>
+            </form>
+
+        </div>
+        <div ng-show="offersPanelVisilble" class="panel panel-default ng-hide">
+            <div class="panel-heading">Предложения по заказу</div>
+            <div class="panel-body">
+                <div kendo-grid
+                     k-data-source="offersData"
+                     k-columns="offersGridColumns"
+                     k-selectable="true"
+                     k-on-change="onSelection(kendoEvent)"></div>
+                
+            </div>
+        </div>
+        
+        <div ng-show="promoPanelVisilble" class="panel panel-default ng-hide">
+            <div class="panel-heading">Предложения по заказу</div>
+            <div class="panel-body">
+                <div kendo-grid
+                     k-data-source="promoData"
+                     k-columns="promoGridColumns"
+                     k-selectable="false"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <ui-gmap-google-map control="map.control" center='map.center' zoom='map.zoom'>
+                <ui-gmap-marker coords="marker.center" idkey="marker.id">
+                    <ui-gmap-window options="windowOptions">
+                        <div>
+                            <p>
+                                Дистанция: <b>{{distance}}</b>
+                            </p>
+                            <p>
+                                Продолжительность: <b>{{duration}}</b>
+                            </p>
+                        </div>
+
+                    </ui-gmap-window>
+                </ui-gmap-marker>
+                <!-- polyline example -->
+                <ui-gmap-polyline ng-repeat="p in map.polylines" path="p.path" stroke="p.stroke" visible='p.visible'
+                                  geodesic='p.geodesic' fit="false" editable="p.editable" draggable="p.draggable" icons='p.icons'>
+                </ui-gmap-polyline>
+            </ui-gmap-google-map>
+        </div>
+
+    </div>
+</div>

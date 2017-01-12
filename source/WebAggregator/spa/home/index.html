@@ -1,0 +1,54 @@
+﻿<script type="text/javascript">
+    function onOrderGridChange(e) {
+        var s = angular.element(document.getElementById('ordersCtrl')).scope();
+        var id = e.parentNode.parentNode.attributes['data-uid'].value;
+        s.onOrderGridChange(id);
+        return false;
+    }
+</script>
+<div ng-controller="ordersCtrl" id="ordersCtrl" class="row">
+    <div class="col-md-7">
+        <sip-call-side-bar></sip-call-side-bar>
+        <div class="panel panel-default">
+            <div class="panel-heading">Реестр заказов</div>
+            <div class="panel-body">
+                <div k-on-select="onTabSelect(kendoEvent)" kendo-tab-strip k-content-urls="[null, null]">
+                    <ul>
+                        <li class="k-state-active">All</li>
+                        <li>Arrival</li>
+                        <li>Waiting</li>
+                        <li>Executing</li>
+                        <li>Finished</li>
+                        <li>Scheduled</li>
+                    </ul>
+                </div>
+                <div kendo-grid
+                     k-data-source="ordersData"
+                     k-options="ordersOptions">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="panel panel-default">
+            <ui-gmap-google-map control="map.control" center='map.center' zoom='map.zoom'>
+                <ui-gmap-marker coords="marker.center" idkey="marker.id">
+                    <ui-gmap-window options="windowOptions">
+                        <div>
+                            <p>
+                                Дистанция: <b>{{distance}}</b>
+                            </p>
+                            <p>
+                                Продолжительность: <b>{{duration}}</b>
+                            </p>
+                        </div>
+
+                    </ui-gmap-window>
+                </ui-gmap-marker>
+                <ui-gmap-polyline ng-repeat="p in map.polylines" path="p.path" stroke="p.stroke" visible='p.visible'
+                                  geodesic='p.geodesic' fit="false" editable="p.editable" draggable="p.draggable" icons='p.icons'>
+                </ui-gmap-polyline>
+            </ui-gmap-google-map>
+        </div>
+    </div>
+</div>

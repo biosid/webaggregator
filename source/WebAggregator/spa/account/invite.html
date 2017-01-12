@@ -1,0 +1,20 @@
+﻿<div class="row">
+    <div class="panel panel-default form-signin">
+        <div class="panel-body">
+            <form class="" role="form" novalidate angular-validator name="inviteForm" angular-validator-submit="">
+                <h3 class="form-signin-heading">Подтвердите приглашение</h3>
+                <div class="form-group">
+                    <label for="code" class="sr-only">Код</label>
+                    <input type="text" id="code" name="code" class="form-control" ng-model="invite.code" placeholder="Username"
+                           validate-on="blur" required required-message="'code is required'">
+                </div>
+                <div class="form-group">
+                    <label for="password" class="sr-only">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" ng-model="invite.password" placeholder="Password"
+                           validate-on="blur" required required-message="'password is required'">
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" ng-click="inviteForm.$valid && acceptInvite()" >Подтвердить</button>
+            </form>
+        </div>
+    </div>
+</div>

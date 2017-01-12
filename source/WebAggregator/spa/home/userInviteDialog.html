@@ -1,0 +1,31 @@
+﻿<div>
+    <form role="form" novalidate angular-validator name="inviteForm" angular-validator-submit="">
+        <div class="form-group">
+            <label for="userName">User name</label>
+            <input type="text" ng-model="inviteModel.profile.name" class="form-control" id="userName" name="userName" validate-on="blur" required required-message="'Не заполнено поле User name'" placeholder="User name">
+        </div>
+        <div class="form-group">
+            <label for="login">Login</label>
+            <input type="text" ng-model="inviteModel.login" class="form-control" id="login" name="login" validate-on="blur" required required-message="'Не заполнено поле Login'" placeholder="Login">
+        </div>
+        <div class="form-group">
+            <label for="login">Роль пользователя</label>
+            <select kendo-drop-down-list
+                    required required-message="'Не выбрана роль'"
+                    k-data-text-field="'name'"
+                    k-data-value-field="'id'"
+                    style="width: 100%"
+                    k-data-source="roles"
+                    ng-model="inviteModel.profile.role.id"></select>
+        </div>
+        <div class="row text-center">
+            <div class="col-lg-6 text-center">
+                <button hotkey="{enter: sendInvite}" ng-click="inviteForm.$valid && sendInvite()" class="btn btn-success">Пригласить</button>
+            </div>
+            <div class="col-lg-6 text-center">
+                <button hotkey="{esc: cancelInvite}" ng-click="cancelInvite()" class="btn btn-default">Отмена</button>
+            </div>
+        </div>
+    </form>
+
+</div>

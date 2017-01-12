@@ -1,0 +1,110 @@
+﻿<div class="row">
+    <div class="col-md-5">
+        <div class="panel panel-default">
+            <div class="panel-heading">Редактирование заказа № {{order.id}}</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label for="employeeName">Сотрудник создавший заказ</label>
+                    <input disabled="disabled" type="text" id="employeeName" class="form-control" ng-model="order.employeeName">
+                </div>
+                <div class="form-group">
+                    <label for="passengerPhone">Номер телефона пассажира</label>
+                    <input disabled="disabled" type="text" id="passengerPhone" name="inputOrderPhone" class="form-control" ng-model="order.passengerPhone">
+                </div>
+                <div class="form-group">
+                    <label for="passengerName">Ф.И.О Пассажира</label>
+                    <input disabled="disabled" type="text" id="passengerName" name="passengerName" class="form-control" ng-model="order.passengerName">
+                </div>
+
+                <div class="form-group">
+                    <label for="driverPhone">Номер телефона водителя</label>
+                    <input disabled="disabled" type="text" id="driverPhone" class="form-control" ng-model="order.driverPhone">
+                </div>
+                <div class="form-group">
+                    <label for="driverName">Ф.И.О водителя</label>
+                    <input disabled="disabled" type="text" id="driverName" class="form-control" ng-model="order.driverName">
+                </div>
+                <div class="form-group">
+                    <label for="vehicleModel">Модель автомобиля</label>
+                    <input disabled="disabled" type="text" id="vehicleModel" class="form-control" ng-model="order.vehicleModel">
+                </div>
+                <div class="form-group">
+                    <label for="vehicleColor">Цвет автомобиля</label>
+                    <input disabled="disabled" type="text" id="vehicleColor" class="form-control" ng-model="order.vehicleColor.name">
+                </div>
+                <div class="form-group">
+                    <label for="registrationPlate">Гос. номер автомобиля</label>
+                    <input disabled="disabled" type="text" id="registrationPlate" class="form-control" ng-model="order.registrationPlate">
+                </div>
+                <div class="form-group">
+                    <label for="estimatedPrice">Цена</label>
+                    <input disabled="disabled" type="text" id="estimatedPrice" class="form-control" ng-model="order.estimatedPrice">
+                </div>
+                <div class="form-group">
+                    <label for="startAddress">Начальный адрес</label>
+                    <input disabled="disabled" type="text" id="startAddress" class="form-control" ng-model="order.startAddress">
+                </div>
+                <div class="form-group">
+                    <label for="endAddress">Конечный адрес</label>
+                    <input disabled="disabled" type="text" id="endAddress" class="form-control" ng-model="order.endAddress">
+                </div>
+                <div class="form-group">
+                    <label for="stateName">Статус</label>
+                    <input disabled="disabled" type="text" id="stateName" class="form-control" ng-model="order.state.name">
+                </div>
+            </div>
+        </div>
+        <div ng-show="completionEnabled" class="panel panel-default">
+            <div class="panel-heading">Завершение заказа</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <select kendo-drop-down-list
+                                k-data-text-field="'name'"
+                                k-data-value-field="'id'"
+                                k-data-source="completionReasons"
+                                style="width: 100%"
+                                ng-model="currentCompletionReason"></select>
+
+                    </div>
+                    <div class="col-md-4">
+                        <button ng-click="complete()" class="btn btn-default">Завершить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <button ng-click="returnToOrders()" class="btn btn-default">Вернуться к реестру заказов</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="panel panel-default">
+            <ui-gmap-google-map control="map.control" center='map.center' zoom='map.zoom'>
+                <ui-gmap-marker coords="marker.center" idkey="marker.id">
+                    <ui-gmap-window options="windowOptions">
+                        <div>
+                            <p>
+                                Дистанция: <b>{{distance}}</b>
+                            </p>
+                            <p>
+                                Продолжительность: <b>{{duration}}</b>
+                            </p>
+                        </div>
+
+                    </ui-gmap-window>
+                </ui-gmap-marker>
+                <ui-gmap-polyline ng-repeat="p in map.polylines" path="p.path" stroke="p.stroke" visible='p.visible'
+                                  geodesic='p.geodesic' fit="false" editable="p.editable" draggable="p.draggable" icons='p.icons'>
+                </ui-gmap-polyline>
+            </ui-gmap-google-map>
+        </div>
+
+    </div>
+</div>

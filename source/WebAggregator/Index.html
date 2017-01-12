@@ -1,0 +1,114 @@
+﻿
+<!DOCTYPE html>
+
+<html ng-app="webAggegator">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Агрегатор</title>
+    <link href="/css/site.css" rel="stylesheet" />
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+    <link href="/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="/Content/font-awesome.css" rel="stylesheet" />
+    <link href="/css/morris.css" rel="stylesheet" />
+    <link href="/css/toastr.css" rel="stylesheet" />
+    <link href="/Content/jquery.fancybox.css" rel="stylesheet" />
+    <link href="/Content/loading-bar.css" rel="stylesheet" />
+    <link href="/Content/hotkeys.min.css" rel="stylesheet" />
+    <link href="/css/ngDialog.min.css" rel="stylesheet" />
+    <link href="/css/ngDialog-theme-default.min.css" rel="stylesheet" />
+    <link href="/Content/kendo/2016.3.1118/kendo.common-material.min.css" rel="stylesheet" />
+    <link href="/Content/kendo/2016.3.1118/kendo.rtl.min.css" rel="stylesheet" />
+    <link href="/Content/kendo/2016.3.1118/kendo.material.min.css" rel="stylesheet" />
+    <link href="/Content/kendo/2016.3.1118/kendo.material.mobile.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/autocomplete.css">
+    <link rel="stylesheet" href="/css/please-wait.css">
+    <link rel="stylesheet" href="/css/ui-layout.css">
+    <script src="/js/SIPml-api.js"></script>
+</head>
+<body ng-controller="rootCtrl">
+    <top-bar></top-bar>
+    <div class="row-offcanvas row-offcanvas-left">
+        <side-bar></side-bar>
+        <div id="main">
+            <div class="col-md-12">
+                <p class="visible-xs">
+                    <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas"><i class="glyphicon glyphicon-chevron-left"></i></button>
+                </p>
+
+                <div class="page {{ pageClass }}" ng-view></div>
+            </div>
+        </div>
+
+    </div>
+    <!--/row-offcanvas -->
+    <!--plugins-->
+    <script src="/Scripts/jquery-3.1.1.js"></script>
+    <script src="/Scripts/jquery.signalR-2.2.1.min.js"></script>
+    <script src="/Scripts/bootstrap.js"></script>
+    <script src="/js/toastr.js"></script>
+    <script src="/js/jquery.raty.js"></script>
+    <script src="/js/respond.src.js"></script>
+    <script src="/Scripts/angular.js"></script>
+    <script src="/Scripts/angular-route.js"></script>
+    <script src="/Scripts/angular-cookies.js"></script>
+    <script src="/js/angular-validator.js"></script>
+    <script src="/js/angular-base64.js"></script>
+    <script src="/js/angucomplete-alt.min.js"></script>
+    <script src="/Scripts/angular-ui/ui-bootstrap-tpls.js"></script>
+    <script src="/Scripts/underscore.js"></script>
+    <script src="/js/raphael.js"></script>
+    <script src="/js/morris.js"></script>
+    <script src="/Scripts/jquery.fancybox.js"></script>
+    <script src="/Scripts/jquery.fancybox-media.js"></script>
+    <script src="/Scripts/loading-bar.js"></script>
+    <script src="/Scripts/hotkeys.min.js"></script>
+    <script src="/js/ngDialog.min.js"></script>
+    <script src="/js/mask.js"></script>
+    <!--<script src="https://kendo.cdn.telerik.com/2016.3.1118/js/kendo.all.min.js"></script>-->
+    <script src="/Scripts/kendo/2016.3.1118/kendo.all.min.js"></script>
+    <script src="/Scripts/kendo/2016.3.1118/kendo.timezones.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&key=AIzaSyBdPSq0KI8S_Ctpd2eqCEcRXP1KEeH2G2s"></script>
+    <script src="/Scripts/modernizr-2.8.3.js"></script>
+    <script src="/js/autocomplete.js"></script>
+    <script src="/js/angular-simple-logger.min.js"></script>
+    <script src="/Scripts/lodash.underscore.min.js"></script>
+    <script src="/Scripts/angular-google-maps.min.js"></script>
+    <script src="/js/please-wait.min.js"></script>
+    <script src="/js/ui-layout.js"></script>
+    <script src="/js/angular-idle.min.js"></script>
+    <!--modules-->
+    <script src="/spa/modules/common.core.js"></script>
+    <script src="/spa/modules/common.ui.js"></script>
+    <!--application-->
+    <script src="/spa/app.js"></script>
+    <!--services-->
+    <script src="/spa/services/apiService.js"></script>
+    <script src="/spa/services/notificationService.js"></script>
+    <script src="/spa/services/membershipService.js"></script>
+    <script src="/spa/services/mapService.js"></script>
+    <!--directives-->
+    <script src="/spa/layout/topBar.directive.js"></script>
+    <script src="/spa/layout/sideBar.directive.js"></script>
+    <script src="/spa/layout/sipCallSideBar.directive.js"></script>
+    <script src="/spa/map/map.directive.js"></script>
+    <!--controllers-->
+    <script src="/spa/account/loginCtrl.js"></script>
+    <script src="/spa/account/recoverCtrl.js"></script>
+    <script src="/spa/account/recoverConfirmCtrl.js"></script>
+    <script src="/spa/account/registerConfirmCtrl.js"></script>
+    <script src="/spa/account/registerCtrl.js"></script>
+    <script src="/spa/home/rootCtrl.js"></script>
+    <script src="/spa/home/indexCtrl.js"></script>
+    <script src="/spa/orders/ordersCtrl.js"></script>
+    <script src="/spa/orders/ordersEditCtrl.js"></script>
+    <script src="/spa/orders/ordersAddCtrl.js"></script>
+    <script src="/spa/map/mapCtrl.js"></script>
+
+    <!-- Audios -->
+    <audio id="audio_remote" autoplay="autoplay"> </audio>
+    <audio id="ringtone" loop src="sounds/ringtone.wav"> </audio>
+    <audio id="ringbacktone" loop src="sounds/ringbacktone.wav"> </audio>
+    <audio id="dtmfTone" src="sounds/dtmf.wav"> </audio>
+</body>
+</html>

@@ -1,0 +1,30 @@
+﻿<div id="divCallCtrl" ng-controller="rootCtrl" ng-init="init()" class="panel panel-default">
+    <div class="panel-body">
+        <label align="center" id="txtRegStatus">
+        </label>
+        <label align="center" id="txtCallStatus"></label>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="txtPhoneNumber" value="" placeholder="Введите номер телефона" />
+                    <div id="divBtnCallGroup" class="input-group-btn">
+                        <button id="btnCall" disabled class="btn btn-success" ng-click="sipCall('call-audio');">
+                            <span class="glyphicon glyphicon-earphone"></span> Позвонить
+                        </button>
+                        <button type="button" id="btnHangUp" class="btn btn-primary" value="Завершить" ng-click='sipHangUp();' disabled>
+                            <span class="glyphicon glyphicon-remove"></span> Завершить
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div id='divCallOptions' class='call-options btn-toolbar' style='display: none;'>
+                    <input type="button" class="btn btn-default" style="" id="btnMute" value="Mute" ng-click='sipToggleMute();' /> &nbsp;
+                    <input type="button" class="btn btn-default" style="" id="btnHoldResume" value="Hold" ng-click='sipToggleHoldResume();' /> &nbsp;
+                    <input type="button" class="btn btn-default" style="" id="btnTransfer" value="Transfer" ng-click='sipTransfer();' /> &nbsp;
+                </div>
+            </div>
+        </div>
+        <div id='divGlassPanel' class='glass-panel' style='visibility:hidden'></div>
+    </div>
+</div>

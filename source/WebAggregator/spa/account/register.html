@@ -1,0 +1,20 @@
+﻿<div class="row">
+    <div class="panel panel-default form-signin">
+        <div class="panel-body">
+            <form class="" role="form" novalidate angular-validator name="userLoginForm" angular-validator-submit="register()">
+                <h3 class="form-signin-heading">Создание нового пользователя</h3>
+                <div class="form-group">
+                    <label for="inputEmail" class="sr-only">Email</label>
+                    <input type="text" id="inputUsername" name="inputEmail" class="form-control" ng-model="user.email" placeholder="Email"
+                           validate-on="blur" required required-message="'Email is required'">
+                </div>
+                <div class="form-group">
+                    <label for="inputUserName" class="sr-only">User name</label>
+                    <input type="text" id="inputUserName" name="inputUserName" class="form-control" ng-model="user.name" placeholder="Name"
+                           validate-on="blur" required required-message="'Name is required'">
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Создать</button>
+            </form>
+        </div>
+    </div>
+</div>

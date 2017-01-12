@@ -1,0 +1,10 @@
+﻿<div class="row">
+    <form class="form-signin" role="form" novalidate angular-validator name="userRegistrationForm" angular-validator-submit="recover()">
+        <h3 class="form-signin-heading">Восстановление пароля </h3>
+        <div class="form-group">
+            <input type="email" name="inputEmail" class="form-control" ng-model="user.email" placeholder="Email address"
+                   validate-on="blur" required required-message="'Заполните поле Email'">
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Восстановить</button>
+    </form>
+</div>
